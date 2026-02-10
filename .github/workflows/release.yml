@@ -1,0 +1,103 @@
+name: Create Release with Challenges
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        type: string
+      release_name:
+        description: 'Release name (optional)'
+        required: false
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create release directory
+        run: mkdir -p release-assets
+
+      - name: Zip all challenges
+        run: |
+          for challenge_dir in challenge-js-*; do
+            if [ -d "$challenge_dir" ]; then
+              echo "Zipping $challenge_dir..."
+              zip -r "release-assets/${challenge_dir}.zip" "$challenge_dir"
+            fi
+          done
+
+      - name: Copy manifest to release assets
+        run: cp maninfest.json release-assets/
+
+      - name: List release assets
+        run: |
+          echo "Release assets:"
+          ls -lh release-assets/
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ inputs.version }}
+          release_name: ${{ inputs.release_name || inputs.version }}
+          draft: false
+          prerelease: ${{ inputs.prerelease }}
+          body: |
+            ## Release ${{ inputs.version }}
+
+            This release contains the following challenges:
+
+            $(ls challenge-js-* -d | sed 's/^/- /')
+
+            ### Files included:
+            - All challenge packages (`.zip` files)
+            - `maninfest.json` - Challenge manifest file
+
+            ### Usage
+            Download the challenges you want to work on and extract them locally.
+
+      - name: Upload Challenge Zips
+        run: |
+          for zip_file in release-assets/*.zip; do
+            filename=$(basename "$zip_file")
+            echo "Uploading $filename..."
+            curl -L \
+              -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              -H "Content-Type: application/zip" \
+              --data-binary "@$zip_file" \
+              "${{ steps.create_release.outputs.upload_url }}?name=$filename"
+          done
+
+      - name: Upload Manifest
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-assets/maninfest.json
+          asset_name: maninfest.json
+          asset_content_type: application/json
+
+      - name: Release Summary
+        run: |
+          echo "✅ Release ${{ inputs.version }} created successfully!"
+          echo "📦 Uploaded assets:"
+          ls -1 release-assets/
