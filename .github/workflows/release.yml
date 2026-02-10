@@ -40,7 +40,7 @@ jobs:
           done
 
       - name: Copy manifest to release assets
-        run: cp maninfest.json release-assets/
+        run: cp manifest.json release-assets/
 
       - name: List release assets
         run: |
@@ -66,7 +66,7 @@ jobs:
 
             ### Files included:
             - All challenge packages (`.zip` files)
-            - `maninfest.json` - Challenge manifest file
+            - `manifest.json` - Challenge manifest file
 
             ### Usage
             Download the challenges you want to work on and extract them locally.
@@ -92,8 +92,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release-assets/maninfest.json
-          asset_name: maninfest.json
+          asset_path: ./release-assets/manifest.json
+          asset_name: manifest.json
           asset_content_type: application/json
 
       - name: Release Summary
