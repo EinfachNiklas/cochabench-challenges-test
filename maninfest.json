@@ -2,15 +2,21 @@
 	"challenges":{
 		"challenge-js-1":{
 			"title":"challenge-js-1",
-			"location":"https://github.com/EinfachNiklas/cochabench-challenges-test/releases/download/v2.0.0/challenge-js-1.zip",
+			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-js-1.zip",
 			"language":"javascript",
 			"difficulty": "easy"
 		},
 		"challenge-js-2":{
 			"title":"challenge-js-2",
-			"location":"https://github.com/EinfachNiklas/cochabench-challenges-test/releases/download/v2.0.0/challenge-js-2.zip",
+			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-js-2.zip",
 			"language":"javascript",
 			"difficulty": "easy"
+		},
+		"challenge-js-3":{
+			"title":"Graph Pathfinding mit Constraints",
+			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-js-3.zip",
+			"language":"javascript",
+			"difficulty": "hard"
 		}
 	}
 }
