@@ -5,7 +5,7 @@ const {
 	findKShortestPaths,
 	isValidGraph,
 	findPathWithWaypoints
-} = require('../graph-pathfinding');
+} = require('../src/graph-pathfinding');
 
 describe('isValidGraph', () => {
 	test('erkennt gültigen Graph', () => {
