@@ -11,7 +11,7 @@
   "jest": {
     "testEnvironment": "node",
     "testMatch": ["**/test/**/*.test.js"],
-    "collectCoverageFrom": ["src/**/*.js", "!src/test/**"]
+    "collectCoverageFrom": ["src/**/*.js"]
   },
   "devDependencies": {
     "jest": "^29.7.0"
