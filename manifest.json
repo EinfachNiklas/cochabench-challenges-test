@@ -17,6 +17,18 @@
 			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-js-3.zip",
 			"language":"javascript",
 			"difficulty": "hard"
+		},
+		"challenge-py-1":{
+			"title":"LRU Cache with TTL",
+			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-py-1.zip",
+			"language":"python",
+			"difficulty": "hard"
+		},
+		"challenge-go-1":{
+			"title":"Concurrent Web Crawler",
+			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-go-1.zip",
+			"language":"go",
+			"difficulty": "hard"
 		}
 	}
 }
