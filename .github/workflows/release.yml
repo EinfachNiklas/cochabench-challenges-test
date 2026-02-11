@@ -32,7 +32,7 @@ jobs:
 
       - name: Zip all challenges
         run: |
-          for challenge_dir in challenge-js-*; do
+          for challenge_dir in challenge-*; do
             if [ -d "$challenge_dir" ]; then
               echo "Zipping $challenge_dir..."
               zip -r "release-assets/${challenge_dir}.zip" "$challenge_dir"
@@ -55,12 +55,40 @@ jobs:
           echo "" >> $GITHUB_OUTPUT
           echo "This release contains the following challenges:" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
-          for challenge_dir in challenge-js-*; do
-            if [ -d "$challenge_dir" ]; then
-              echo "- $challenge_dir" >> $GITHUB_OUTPUT
-            fi
-          done
-          echo "" >> $GITHUB_OUTPUT
+
+          # JavaScript Challenges
+          js_challenges=$(find . -maxdepth 1 -type d -name "challenge-js-*" | sort)
+          if [ -n "$js_challenges" ]; then
+            echo "### JavaScript" >> $GITHUB_OUTPUT
+            for challenge_dir in $js_challenges; do
+              challenge_dir=$(basename "$challenge_dir")
+              echo "- \`$challenge_dir\`" >> $GITHUB_OUTPUT
+            done
+            echo "" >> $GITHUB_OUTPUT
+          fi
+
+          # Python Challenges
+          py_challenges=$(find . -maxdepth 1 -type d -name "challenge-py-*" | sort)
+          if [ -n "$py_challenges" ]; then
+            echo "### Python" >> $GITHUB_OUTPUT
+            for challenge_dir in $py_challenges; do
+              challenge_dir=$(basename "$challenge_dir")
+              echo "- \`$challenge_dir\`" >> $GITHUB_OUTPUT
+            done
+            echo "" >> $GITHUB_OUTPUT
+          fi
+
+          # Go Challenges
+          go_challenges=$(find . -maxdepth 1 -type d -name "challenge-go-*" | sort)
+          if [ -n "$go_challenges" ]; then
+            echo "### Go" >> $GITHUB_OUTPUT
+            for challenge_dir in $go_challenges; do
+              challenge_dir=$(basename "$challenge_dir")
+              echo "- \`$challenge_dir\`" >> $GITHUB_OUTPUT
+            done
+            echo "" >> $GITHUB_OUTPUT
+          fi
+
           echo "### Files included:" >> $GITHUB_OUTPUT
           echo "- All challenge packages (\`.zip\` files)" >> $GITHUB_OUTPUT
           echo "- \`manifest.json\` - Challenge manifest file" >> $GITHUB_OUTPUT
