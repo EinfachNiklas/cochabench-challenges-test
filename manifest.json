@@ -18,6 +18,12 @@
 			"language":"javascript",
 			"difficulty": "hard"
 		},
+		"challenge-js-4":{
+			"title":"Math.js Extension Challenge",
+			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-js-4.zip",
+			"language":"javascript",
+			"difficulty": "hard"
+		},
 		"challenge-py-1":{
 			"title":"LRU Cache with TTL",
 			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-py-1.zip",

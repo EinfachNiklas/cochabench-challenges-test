@@ -1,0 +1,7 @@
+# Challenge-specific ignores
+node_modules/
+coverage/
+.jest-cache/
+*.log
+
+# Keep original math.js .gitignore
