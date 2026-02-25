@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find challenge-js-4/src -name \"package.json\" -exec cat {} ;)"
+    ]
+  }
+}
