@@ -3,6 +3,7 @@ package crawler
 import (
 	"context"
 	"net/http"
+	"net/url"
 	"net/http/httptest"
 	"strings"
 	"testing"
