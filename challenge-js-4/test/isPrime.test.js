@@ -1,4 +1,4 @@
-import { create, all } from '../src/index.js';
+import { create, all } from '../node_modules/mathjs/lib/esm/index.js';
 
 const math = create(all);
 
