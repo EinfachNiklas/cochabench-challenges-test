@@ -1,6 +1,6 @@
-module.exports = {
+export default {
   testEnvironment: 'node',
-  testMatch: ['**/test/challenge/**/*.test.js'],
+  testMatch: ['**/test/**/*.test.js'],
   collectCoverageFrom: [
     'src/src/function/statistics/median.js',
     'src/src/function/number/isPrime.js',
