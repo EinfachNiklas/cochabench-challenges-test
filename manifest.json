@@ -29,14 +29,6 @@
 			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-go-1.zip",
 			"language":"go",
 			"difficulty": "hard"
-		},
-		"challenge-eslint-1":{
-			"title":"ESLint Rule Enhancement Challenge (Brownfield)",
-			"location":"http://github.com/EinfachNiklas/cochabench-challenges-test/releases/latest/download/challenge-eslint-1.zip",
-			"language":"javascript",
-			"difficulty": "medium",
-			"category": "brownfield",
-			"source": "eslint/eslint"
 		}
 	}
 }
