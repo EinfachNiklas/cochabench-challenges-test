@@ -124,20 +124,6 @@ stats = cache.get_stats()
 # {'hits': 1, 'misses': 1, 'evictions': 1, 'expired': 1, ...}
 ```
 
-## Ausführen
-
-Voraussetzung: Python >= 3.8
-
-```bash
-# Tests ausführen
-python -m pytest test/
-
-# Oder mit unittest
-python -m unittest discover test/
-
-# Mit Coverage
-python -m pytest --cov=src test/
-```
 
 ## Bewertungskriterien
 
